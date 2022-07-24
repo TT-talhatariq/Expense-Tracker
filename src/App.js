@@ -14,6 +14,7 @@ function App() {
           spacing={3}
           justifyContent='center'
           alignItems='center'
+          className={classes.App}
           style={{ height: '100vh' }}
         >
           <Grid item xs={10} md={4.5} className={classes.mobile}>
