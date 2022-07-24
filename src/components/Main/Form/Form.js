@@ -103,7 +103,7 @@ const Form = ({ isEdit, editID, setIsEdit }) => {
       {/* Expense */}
       <Grid item xs={6}>
         <FormControl fullWidth>
-          <InputLabel htmlFor='expense-type'>Expense Type</InputLabel>
+          <InputLabel htmlFor='expense-type'>Type</InputLabel>
           <Select
             variant='standard'
             InputLabelProps={{ shrink: false }}
