@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   FormControl,
   Grid,
@@ -10,13 +10,14 @@ import {
   Button,
 } from '@mui/material'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+
+import { useDispatch, useSelector } from 'react-redux'
 import { ExpenseActions } from '../../../redux/expense-slice'
 import classes from './Form.module.css'
 import { v4 as uuidv4 } from 'uuid'
 import { incomeCategories } from '../../../data/categories'
 import { expenseCategories } from '../../../data/categories'
-
+import CustomizedSnackbars from '../../snakbar/snakBar'
 const formateDate = (date) => {
   const d = new Date(date)
   let month = `${d.getMonth() + 1}`
@@ -40,10 +41,27 @@ const initialState = {
   date: formateDate(new Date()),
 }
 
-console.log(initialState.date)
-const Form = () => {
+const Form = ({ isEdit, editID, setIsEdit }) => {
+  const transactions = useSelector((state) => state.expenses.transactions)
+  const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const [formData, setFormData] = useState(initialState)
+
+  console.log(isEdit)
+  useEffect(() => {
+    if (isEdit) {
+      const transaction = transactions.find(
+        (transaction) => transaction.id === editID
+      )
+      setFormData({
+        amount: transaction.amount,
+        category: transaction.category,
+        type: transaction.type,
+        date: transaction.date,
+      })
+    }
+  }, [isEdit, editID, transactions])
+
   const selectedCatogries =
     formData.type === 'Expense' ? expenseCategories : incomeCategories
 
@@ -55,10 +73,27 @@ const Form = () => {
         id: uuidv4(),
       })
     )
+
     setFormData(initialState)
+    setOpen(true)
+  }
+
+  const editTransaction = () => {
+    dispatch(
+      ExpenseActions.editTransaction({
+        ...formData,
+        amount: +formData.amount,
+        id: editID,
+      })
+    )
+
+    setIsEdit(false)
+    setFormData(initialState)
+    setOpen(true)
   }
   return (
     <Grid container spacing={3}>
+      <CustomizedSnackbars open={open} setOpen={setOpen} />
       <Grid item xs={12}>
         <Typography variant='subtitle2' align='center' gutterBottom>
           ...
@@ -142,7 +177,7 @@ const Form = () => {
           color='primary'
           alignItems='center'
           fullWidth
-          onClick={addTransaction}
+          onClick={isEdit ? editTransaction : addTransaction}
         >
           Create
         </Button>

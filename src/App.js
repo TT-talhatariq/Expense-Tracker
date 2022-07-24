@@ -1,13 +1,10 @@
-import './App.css'
+import classes from './App.module.css'
 import Detail from './components/Details/Detail'
 import { CssBaseline, Grid, StyledEngineProvider } from '@mui/material'
 import Main from './components/Main/Main'
 import { useDispatch, useSelector } from 'react-redux'
-import { ExpenseActions } from './redux/expense-slice'
-function App() {
-  const dispatch = useDispatch()
-  const expenses = useSelector((state) => state.expenses)
 
+function App() {
   return (
     <>
       <CssBaseline />
@@ -19,15 +16,19 @@ function App() {
           alignItems='center'
           style={{ height: '100vh' }}
         >
-          <Grid item xs={12} md={4}>
-            <Detail title='Income' />
-          </Grid>
-
-          <Grid item xs={12} md={3.5}>
+          <Grid item xs={10} md={4.5} className={classes.mobile}>
             <Main />
           </Grid>
 
-          <Grid item xs={12} md={4}>
+          <Grid item xs={10} md={3.3}>
+            <Detail title='Income' />
+          </Grid>
+
+          <Grid item xs={10} md={4.5} className={classes.desktop}>
+            <Main />
+          </Grid>
+
+          <Grid item xs={10} md={3.3}>
             <Detail title='Expense' />
           </Grid>
         </Grid>

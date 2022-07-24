@@ -12,9 +12,17 @@ const Detail = ({ title }) => {
   return (
     <Card className={title === 'Income' ? classes.income : classes.expense}>
       <CardHeader title={title} />
-      <CardContent>
-        <Typography variant='h5'>{totalAmount}</Typography>
-        <Doughnut data={chartData} />
+      <CardContent className={classes.chart}>
+        <Typography variant='h5'>{totalAmount}$</Typography>
+        <Doughnut
+          data={chartData}
+          width='100%'
+          height='100px'
+          options={{
+            responsive: true,
+            maintainAspectRatio: true,
+          }}
+        />
       </CardContent>
     </Card>
   )

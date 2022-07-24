@@ -35,12 +35,11 @@ const useTransaction = (title) => {
       }
     })
   })
-  console.log(catogaries, 'Catogaries')
+
   // Filter Categories with amount greater than 0
   const filteredCategories = catogaries.filter(
     (category) => category.amount > 0
   )
-  console.log(filteredCategories)
   //create chart data
   const chartData = {
     labels: filteredCategories.map((category) => category.type),
