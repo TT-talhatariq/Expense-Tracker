@@ -1,18 +1,22 @@
 # Expense Tracker
-I developed the Find Places app using Google Maps and some APIs. It will suggest you all the restaurants, hotels and attractions around you. 
+I developed the higly attractive and an elegant Expense Tracker, using which you can keep track of your incomes and expenses. 
+
 <br>
 [Live Site](https://find-places-and-restruants.netlify.app)
 ![image](img.png)
 
 
 ## Developed with 
-- React (States, Hooks)
+- React
 - Material UI
-- Axios
-- Google Maps
+- Charts
+- Redux
+- Local Storage
 
-API used: Travel Advisor API (Rapid Api)
-
+## Features:
+- You can perform all the CRUD operations. Like Add, Remove and Edit the Entries.
+- An efficient UI and visual representation of Expenses and Income.
+- Fully Responsive
 
 ## How to Start
 In the project directory, you can run:
