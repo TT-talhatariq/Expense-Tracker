@@ -1,6 +1,6 @@
 # Expense Tracker
 I developed the higly attractive and an elegant Expense Tracker, using which you can keep track of your incomes and expenses. 
-[Live Site](https://find-places-and-restruants.netlify.app)
+[Live Site](https://expense-tracker-chart.netlify.app/)
 <br>
 ![image](img.png)
 
